@@ -50,6 +50,10 @@ export class AppState {
             }
         }
     }
+
+    place() {
+
+    }
 }
 
 const elements = [
