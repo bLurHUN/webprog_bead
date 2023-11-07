@@ -1,11 +1,20 @@
 import {Field, FieldType} from "./field.js";
 
+export const GameStatus = {
+    ACTIVE: 1,
+    OVER: 2
+}
 export class AppState {
     board = []
     nextElem = []
     preview = []
+    time
+    status = GameStatus
 
     init() {
+        this.time = 28
+        this.status = GameStatus.ACTIVE
+
         //Board
         this.board = []
         for (let i = 0; i < 11; i++) {
@@ -85,6 +94,14 @@ export class AppState {
                     }
                 }
             }
+            this.checkEnd()
+        }
+    }
+
+    checkEnd() {
+        this.time -= this.nextElem.time
+        if (this.time <= 0) {
+            this.status = GameStatus.OVER
         }
     }
 }
