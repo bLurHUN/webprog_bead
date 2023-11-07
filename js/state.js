@@ -51,8 +51,41 @@ export class AppState {
         }
     }
 
-    place() {
+    place(td) {
+        const tr = td.parentNode
+        const x = td.cellIndex
+        const y = tr.rowIndex
+        let valid = true
 
+        //Check viability
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                if (this.preview[i][j].type !== FieldType.EMPTY && (y + i >= 11 || x + j >= 11)) {
+                    valid = false
+                    return
+                }
+                if (y + i < 11 && x + j < 11) {
+                    if (this.board[y + i][x + j].type !== FieldType.EMPTY && this.preview[i][j].type !== FieldType.EMPTY) {
+                        valid = false
+                        return
+                    }
+                }
+            }
+            if (!valid) {
+                return
+            }
+        }
+
+        //Place element
+        if (valid) {
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    if (y + i < 11 && x + j < 11) {
+                        this.board[y + i][x + j].type = (this.preview[i][j].type !== FieldType.EMPTY ? this.preview[i][j].type : this.board[y + i][x + j].type)
+                    }
+                }
+            }
+        }
     }
 }
 
