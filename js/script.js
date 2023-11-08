@@ -29,4 +29,8 @@ function handleFieldClick(event) {
     state.place(td)
     game.innerHTML = gameRender(state)
     timer.innerHTML = state.time
+
+    /*if (state.status === GameStatus.OVER) {
+
+    }*/
 }
