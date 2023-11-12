@@ -68,6 +68,7 @@ function handleFieldClick(event) {
                 winterScore.innerHTML = `<p class="text-center" id="winterScore">${state.winterPoints} pont</p>`
                 break
             case (Season.SPRING):
+                transSeason = "Tavasz"
                 winterScore.innerHTML = `<p class="text-center" id="winterScore">${state.winterPoints} pont</p>`
                 springScore.innerHTML = `<p class="text-center" id="springScore">${state.springPoints} pont</p>`
                 break
