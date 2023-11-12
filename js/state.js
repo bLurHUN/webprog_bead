@@ -187,6 +187,9 @@ export class AppState {
                 case ("Határvidék"):
                     subPoints += this.missionHatarvidek()
                     break
+                case ("Az erdő széle"):
+                    subPoints += this.missionErdoSzele()
+                    break
             }
         }
         return subPoints
@@ -222,6 +225,18 @@ export class AppState {
         }
 
         this.totalPoints += points
+        return points
+    }
+
+    missionErdoSzele() {
+        let points = 0
+        for (let i = 0; i < 11; i++) {
+            for (let j = 0; j < 11; j++) {
+                if ((i === 0 || j=== 0 || i === 10 || j === 10) && this.board[i][j].type === FieldType.FOREST) {
+                    points++
+                }
+            }
+        }
         return points
     }
 }
