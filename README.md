@@ -17,7 +17,7 @@ A fegyelmi vétség legsúlyosabb következménye a hallgató elbocsátása az e
 [x] Idő: A játék 28 időegységig tart, és a térképelemek lehelyezésével kivonja a térképelemhez tartozó időegységet belőle. (1 pont)  
 [x] Küldetés: a "Határvidék" küldetés pontszámát ki tudja számolni. (1 pont)  
 [ ] Vége: Minden küldetésnél kiírja, hogy melyik küldetésre hány pontot kaptunk. (1 pont)  
-[ ] Vége: A játék végén, a 28 időegység eltelte után a Határvidék alapküldetéshez tartozó pontszámot kiszámolja, és kiírja hány pontot értünk el. (1 pont)  
+[x] Vége: A játék végén, a 28 időegység eltelte után a Határvidék alapküldetéshez tartozó pontszámot kiszámolja, és kiírja hány pontot értünk el. (1 pont)  
 
 ### Az alap feladatok (12 pont)
 [x] Lehelyezés: A térképelemet szabályosan tudja lehelyezni. (2 pont)  

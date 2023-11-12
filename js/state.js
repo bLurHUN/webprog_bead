@@ -10,6 +10,8 @@ export class AppState {
     preview = []
     time
     status = GameStatus
+    actMissions = []
+    r
 
     init() {
         this.time = 28
@@ -30,9 +32,37 @@ export class AppState {
         this.board[9][5].type = FieldType.HILL
 
         //Next element
-        let r = Math.floor(Math.random() * elements.length)
-        this.nextElem = elements[r]
+        this.selectNextElement()
 
+        //Missions
+        let selected = []
+        let mr
+        while (this.actMissions.length < 4) {
+            mr = Math.floor(Math.random() * missions.basic.length)
+            if (!selected.includes(mr)) {
+                selected.push(mr)
+                this.actMissions.push(missions.basic[mr].title)
+            }
+        }
+    }
+
+    selectNextElement() {
+        if (elements.length === 0) {
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    this.preview[i] = []
+                    for (let j = 0; j < 3; j++) {
+                        this.preview[i][j] = new Field()
+                        this.preview[i][j].type = FieldType.EMPTY
+                    }
+                }
+            }
+            this.status = GameStatus.OVER
+            return
+        }
+
+        this.r = Math.floor(Math.random() * elements.length)
+        this.nextElem = elements[this.r]
 
         for (let i = 0; i < 3; i++) {
             this.preview[i] = []
@@ -94,17 +124,27 @@ export class AppState {
                     }
                 }
             }
-            this.checkEnd()
+            this.time -= this.nextElem.time
+            elements.splice(this.r, 1)
+            this.selectNextElement()
         }
     }
 
-    checkEnd() {
-        this.time -= this.nextElem.time
-        if (this.time <= 0) {
-            this.status = GameStatus.OVER
-        }
-    }
 
+    addMission(m) {
+        missions.push(m)
+    }
+    calcMissions() {
+        for (const mission of this.actMissions) {
+            switch (mission) {
+                case ("Határvidék"):
+                    this.missionHatarvidek()
+                    break
+            }
+        }
+
+
+    }
     missionHatarvidek() {
         let valid
         let points = 0
@@ -114,7 +154,7 @@ export class AppState {
             for (let j = 0; j < 11; j++) {
                 if (this.board[i][j].type === FieldType.EMPTY) {
                     valid = false
-                    return
+                    break
                 }
             }
             if (valid) {
@@ -127,7 +167,7 @@ export class AppState {
             for (let j = 0; j < 11; j++) {
                 if (this.board[j][i].type === FieldType.EMPTY) {
                     valid = false
-                    return
+                    break
                 }
             }
             if (valid) {
@@ -135,7 +175,7 @@ export class AppState {
             }
         }
 
-        return points
+        console.log(points)
     }
 }
 
