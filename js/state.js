@@ -146,6 +146,16 @@ export class AppState {
         }
     }
 
+    rotateNextElement() {
+
+    }
+
+    mirrorNextElement() {
+        for (const row of this.preview) {
+            row.reverse()
+        }
+    }
+
     setActiveSeason() {
         if (this.time <= 0) {
             switch (this.season) {
@@ -166,9 +176,7 @@ export class AppState {
         } else if (this.status === GameStatus.OVER) {
             this.season = Season.SPRING
             this.status = GameStatus.OVER
-            console.log("ya")
             this.winterPoints += this.calcMissions([this.actMissions[3], this.actMissions[0]])
-            console.log("yay")
         }
     }
 

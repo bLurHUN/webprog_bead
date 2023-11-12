@@ -13,6 +13,8 @@ const summerScore = document.querySelector('#summerScore')
 const autumnScore = document.querySelector('#autumnScore')
 const winterScore = document.querySelector('#winterScore')
 const totalScore = document.querySelector('#totalScore')
+const rotate = document.querySelector('#rotate')
+const mirror = document.querySelector('#mirror')
 
 state.init()
 game.innerHTML = gameRender(state)
@@ -26,6 +28,8 @@ for (const arrElement of arr) {
 
 
 game.addEventListener("click", handleFieldClick)
+rotate.addEventListener("click", rotateElement)
+mirror.addEventListener("click", mirrorElement)
 
 function handleFieldClick(event) {
     if (!event.target.matches("img")) {
@@ -79,4 +83,16 @@ function handleFieldClick(event) {
             missions.appendChild(arrElement)
         }
     }
+}
+
+function rotateElement() {
+    state.rotateNextElement()
+    nextElem.innerHTML = state.nextElem.time
+    nextElem.innerHTML += prevRender(state)
+}
+
+function mirrorElement() {
+    state.mirrorNextElement()
+    nextElem.innerHTML = state.nextElem.time
+    nextElem.innerHTML += prevRender(state)
 }
