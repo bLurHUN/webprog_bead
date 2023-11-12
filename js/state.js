@@ -147,7 +147,24 @@ export class AppState {
     }
 
     rotateNextElement() {
-        //TODO
+        const rows = this.preview.length;
+        const columns = this.preview[0].length;
+
+        for (let i = 0; i < rows; i++) {
+            for (let j = i; j < columns; j++) {
+                const temp = this.preview[i][j];
+                this.preview[i][j] = this.preview[j][i];
+                this.preview[j][i] = temp;
+            }
+        }
+
+        for (let i = 0; i < rows; i++) {
+            for (let j = 0; j < columns / 2; j++) {
+                const temp = this.preview[i][j];
+                this.preview[i][j] = this.preview[i][columns - 1 - j];
+                this.preview[i][columns - 1 - j] = temp;
+            }
+        }
     }
 
     mirrorNextElement() {

@@ -21,7 +21,7 @@ A fegyelmi vétség legsúlyosabb következménye a hallgató elbocsátása az e
 
 ### Az alap feladatok (12 pont)
 [x] Lehelyezés: A térképelemet szabályosan tudja lehelyezni. (2 pont)  
-[ ] Lehelyezés: A megjelenített térképelem forgatható, és azt így tudjuk lehelyezni. (1 pont)  
+[x] Lehelyezés: A megjelenített térképelem forgatható, és azt így tudjuk lehelyezni. (1 pont)  
 [x] Lehelyezés: A megjelenített térképelem tükrözhető, és azt így tudjuk lehelyezni. (1 pont)  
 [x] Küldetés: a "Az erdő széle" küldetés megjelenik és pontszámát ki tudja számolni. (1 pont)  
 [x] Küldetés: a "Álmos völgy" küldetés megjelenik és pontszámát ki tudja számolni. (1 pont)  
