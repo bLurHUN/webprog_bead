@@ -198,8 +198,47 @@ export class AppState {
                     break
             }
         }
+        this.calcSurroundedHills()
         return subPoints
     }
+
+    calcSurroundedHills() {
+        let points = 0
+
+        let top
+        let bot
+        let left
+        let right
+
+        for (let i = 0; i < 11; i++) {
+            top = false
+            bot = false
+            left = false
+            right = false
+            for (let j = 0; j < 11; j++) {
+                if (this.board[i][j].type === FieldType.HILL) {
+                    if (this.board[i-1][j].type !== FieldType.EMPTY) {
+                        top = true
+                    }
+                    if (this.board[i+1][j].type !== FieldType.EMPTY) {
+                        bot = true
+                    }
+                    if (this.board[i][j-1].type !== FieldType.EMPTY) {
+                        left = true
+                    }
+                    if (this.board[i][j+1].type !== FieldType.EMPTY) {
+                        right = true
+                    }
+                }
+            }
+            if (top && bot && left && right) {
+                points++
+            }
+        }
+
+        this.totalPoints += points
+    }
+
     missionHatarvidek() {
         let valid
         let points = 0
