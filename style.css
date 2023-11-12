@@ -1,3 +1,37 @@
+p {
+    font-size: 18pt;
+}
+
 #game {
     max-width: 700px;
+}
+
+#preview {
+    max-width: 300px;
+}
+
+.season {
+    width: 100px;
+    height: 100px;
+    border-radius: 15px;
+}
+
+#spring {
+    border: 3px solid #3b8d3e;
+    background-color: #68bc6b;
+}
+
+#summer {
+    border: 3px solid #dbba08;
+    background-color: #fce673;
+}
+
+#autumn {
+    border: 3px solid #6b3f14;
+    background-color: #e8bc93;
+}
+
+#winter {
+    border: 3px solid #318fa4;
+    background-color: #58d0ea;
 }

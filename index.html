@@ -11,25 +11,49 @@
 </head>
 <body>
     <div class="container-fluid">
-        <div class="row">
+        <div class="row py-3">
             <div class="col-12 col-md-6">
                 <h2>Burgonya térkép</h2>
                 <div class="mx-auto my-5" id="game"></div>
             </div>
             <div class="col-12 col-md-6">
-                <div class="row">
-                    <div class="col">
-
+                <div class="row justify-content-center">
+                    <div class="col-3 mx-2 season" id="spring">
+                        <p class="text-center">Tavasz:</p>
+                        <p class="text-center">0 pont</p>
+                    </div>
+                    <div class="col-3 mx-2 season" id="summer">
+                        <p class="text-center">Nyár:</p>
+                        <p class="text-center">0 pont</p>
+                    </div>
+                    <div class="col-3 mx-2 season" id="autumn">
+                        <p class="text-center">Ősz:</p>
+                        <p class="text-center">0 pont</p>
+                    </div>
+                    <div class="col-3 mx-2 season" id="winter">
+                        <p class="text-center">Tél:</p>
+                        <p class="text-center">0 pont</p>
+                    </div>
+                    <div class="col-12">
+                        <p class="text-center">Összesen: 0 pont</p>
                     </div>
                 </div>
-                <div class="row pt-5 mx-3" id="missions">
-
+                <div class="row pt-2 mx-3" id="missions">
+                    <div class="col-12 border-bottom border-black border-2">
+                        <p class="mb-0">Jelenlegi évszak: Tavasz</p>
+                    </div>
                 </div>
-                <div class="row pt-5 mx-3">
-                    <div class="col-6">
-                        <h3>Hátralevő idő:</h3>
+                <div class="row pt-2 mx-3">
+                    <div class="col-12 border-bottom border-black border-2">
+                        <p class="mb-0">Évszakból hátralevő idő:</p>
                         <div class="col-6" id="timer"></div>
-                        <h2>Lehelyezendő elem:</h2>
+                    </div>
+                    <div class="col-6">
+                        <p>Lehelyezendő elem:</p>
+                        <div class="d-grid gap-4 pt-5">
+                            <button type="button" class="btn btn-success">Forgatás</button>
+                            <button type="button" class="btn btn-success">Tükrözés</button>
+                        </div>
                     </div>
                     <div class="col-6 px-5" id="nextElem"></div>
                 </div>

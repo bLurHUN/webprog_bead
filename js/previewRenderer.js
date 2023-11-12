@@ -5,7 +5,7 @@ export function render(state) {
 }
 
 function renderBoard(board) {
-    return `<table class="table table-borderless">${board.map(renderRow).join("")}</table>`
+    return `<table class="table table-borderless" id="preview">${board.map(renderRow).join("")}</table>`
 }
 
 function renderRow(row) {
