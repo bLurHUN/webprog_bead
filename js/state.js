@@ -4,7 +4,21 @@ export const GameStatus = {
     ACTIVE: 1,
     OVER: 2
 }
+
+export const Season = {
+    SPRING: 1,
+    SUMMER: 2,
+    AUTUMN: 4,
+    WINTER: 8
+}
+
 export class AppState {
+    totalPoints = 0
+    springPoints = 0
+    summerPoints = 0
+    autumnPoints = 0
+    winterPoints = 0
+    season = Season
     board = []
     nextElem = []
     preview = []
@@ -14,7 +28,8 @@ export class AppState {
     r
 
     init() {
-        this.time = 28
+        this.season = Season.SPRING
+        this.time = 7
         this.status = GameStatus.ACTIVE
 
         //Board
@@ -43,6 +58,47 @@ export class AppState {
                 selected.push(mr)
                 this.actMissions.push(missions.basic[mr].title)
             }
+        }
+    }
+
+    place(td) {
+        const tr = td.parentNode
+        const x = td.cellIndex
+        const y = tr.rowIndex
+        let valid = true
+
+        //Check viability
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                if (this.preview[i][j].type !== FieldType.EMPTY && (y + i >= 11 || x + j >= 11)) {
+                    valid = false
+                    return
+                }
+                if (y + i < 11 && x + j < 11) {
+                    if (this.board[y + i][x + j].type !== FieldType.EMPTY && this.preview[i][j].type !== FieldType.EMPTY) {
+                        valid = false
+                        return
+                    }
+                }
+            }
+            if (!valid) {
+                return
+            }
+        }
+
+        //Place element
+        if (valid) {
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    if (y + i < 11 && x + j < 11) {
+                        this.board[y + i][x + j].type = (this.preview[i][j].type !== FieldType.EMPTY ? this.preview[i][j].type : this.board[y + i][x + j].type)
+                    }
+                }
+            }
+            this.time -= this.nextElem.time
+            elements.splice(this.r, 1)
+            this.selectNextElement()
+            this.setActiveSeason()
         }
     }
 
@@ -90,52 +146,32 @@ export class AppState {
         }
     }
 
-    place(td) {
-        const tr = td.parentNode
-        const x = td.cellIndex
-        const y = tr.rowIndex
-        let valid = true
+    setActiveSeason() {
+        if (this.time <= 0) {
+            switch (this.season) {
+                case (Season.SPRING):
+                    this.season = Season.SUMMER
+                    this.calcMissions(this.actMissions.slice(0, -1))
+                    console.log("a")
+                    break
+                case (Season.SUMMER):
+                    this.season = Season.AUTUMN
+                    this.calcMissions(this.actMissions.slice(1, -1))
+                    console.log("a")
+                    break
+                case (Season.AUTUMN):
+                    this.season = Season.WINTER
+                    this.calcMissions(this.actMissions.slice(2, -1))
+                    console.log("a")
+                    break
+            }
+            this.time += 7
 
-        //Check viability
-        for (let i = 0; i < 3; i++) {
-            for (let j = 0; j < 3; j++) {
-                if (this.preview[i][j].type !== FieldType.EMPTY && (y + i >= 11 || x + j >= 11)) {
-                    valid = false
-                    return
-                }
-                if (y + i < 11 && x + j < 11) {
-                    if (this.board[y + i][x + j].type !== FieldType.EMPTY && this.preview[i][j].type !== FieldType.EMPTY) {
-                        valid = false
-                        return
-                    }
-                }
-            }
-            if (!valid) {
-                return
-            }
-        }
-
-        //Place element
-        if (valid) {
-            for (let i = 0; i < 3; i++) {
-                for (let j = 0; j < 3; j++) {
-                    if (y + i < 11 && x + j < 11) {
-                        this.board[y + i][x + j].type = (this.preview[i][j].type !== FieldType.EMPTY ? this.preview[i][j].type : this.board[y + i][x + j].type)
-                    }
-                }
-            }
-            this.time -= this.nextElem.time
-            elements.splice(this.r, 1)
-            this.selectNextElement()
         }
     }
 
-
-    addMission(m) {
-        missions.push(m)
-    }
-    calcMissions() {
-        for (const mission of this.actMissions) {
+    calcMissions(arr) {
+        for (const mission of arr) {
             switch (mission) {
                 case ("Határvidék"):
                     this.missionHatarvidek()
@@ -175,7 +211,7 @@ export class AppState {
             }
         }
 
-        console.log(points)
+        this.totalPoints += points
     }
 }
 
