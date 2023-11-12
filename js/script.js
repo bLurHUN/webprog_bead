@@ -1,4 +1,4 @@
-import {AppState, GameStatus} from "./state.js";
+import {AppState, GameStatus, Season} from "./state.js";
 import { render as gameRender } from "./gameRenderer.js";
 import { render as prevRender } from "./previewRenderer.js";
 import { render as missionRender } from "./missionRenderer.js";
@@ -31,6 +31,8 @@ function handleFieldClick(event) {
         return
     }
 
+    const season = state.season
+
     const td = event.target.parentNode
     state.place(td)
     game.innerHTML = gameRender(state)
@@ -38,7 +40,32 @@ function handleFieldClick(event) {
     nextElem.innerHTML = state.nextElem.time
     nextElem.innerHTML += prevRender(state)
 
+    if (season !== state.season) {
+        let transSeason
+        switch (state.season) {
+            case (Season.SUMMER):
+                transSeason = "Nyár"
+                break
+            case (Season.AUTUMN):
+                transSeason = "Ősz"
+                break
+            case (Season.WINTER):
+                transSeason = "Tél"
+                break
+        }
+
+        missions.innerHTML = `
+        <div class="col-12 border-bottom border-black border-2">
+            <p class="mb-0">Jelenlegi évszak: ${transSeason}</p>
+        </div>`
+        const arr = missionRender(state)
+        for (const arrElement of arr) {
+            missions.appendChild(arrElement)
+        }
+    }
+
+
     if (state.status === GameStatus.OVER) {
-        state.calcMissions()
+        state.calcMissions([state.actMissions[3], state.actMissions[0]])
     }
 }
