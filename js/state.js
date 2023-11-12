@@ -193,6 +193,9 @@ export class AppState {
                 case ("Álmos-völgy"):
                     subPoints += this.missionAlmosVolgy()
                     break
+                case ("Krumpliöntözés"):
+                    subPoints += this.missionAlmosVolgy()
+                    break
             }
         }
         return subPoints
@@ -255,6 +258,28 @@ export class AppState {
             }
             if (count >= 3) {
                 points += 4
+            }
+        }
+
+        return points
+    }
+
+    missionKrumpliontozes() {
+        let points = 0
+
+        for (let i = 0; i < 11; i++) {
+            for (let j = 0; j < 11; j++) {
+                if (this.board[i][j].type === FieldType.FARM) {
+                    for (let k = i - 1; k < 3; k++) {
+                        for (let l = j - 1; l < 3; l++) {
+                            if (k >= 0 && k <= 10 && l >= 0 && k <= 10) {
+                                if (this.board[k][l].type === FieldType.WATER) {
+                                    points += 2
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
 
