@@ -1,3 +1,5 @@
+import {Season} from "./state.js";
+
 export function render(state) {
     const arr = []
     let i = 0
@@ -6,7 +8,6 @@ export function render(state) {
         const img = document.createElement("img")
 
         img.classList.add("img-fluid")
-        img.id = seasons[i]
         div.classList.add("col-6")
         div.classList.add("py-2")
         switch (m) {
@@ -27,11 +28,41 @@ export function render(state) {
                 img.src = "assets/missions_hun/almos-volgy.png"
                 break
         }
+
+        switch (state.season) {
+            case (Season.SPRING):
+                if ((i === 0 || i === 1)) {
+                    img.classList.add("border")
+                    img.classList.add("border-5")
+                    img.classList.add("border-success")
+                }
+                break
+            case (Season.SUMMER):
+                if ((i === 1 || i === 2)) {
+                    img.classList.add("border")
+                    img.classList.add("border-5")
+                    img.classList.add("border-success")
+                }
+                break
+            case (Season.AUTUMN):
+                if ((i === 2 || i === 3)) {
+                    img.classList.add("border")
+                    img.classList.add("border-5")
+                    img.classList.add("border-success")
+                }
+                break
+            case (Season.WINTER):
+                if ((i === 3 || i === 0)) {
+                    img.classList.add("border")
+                    img.classList.add("border-5")
+                    img.classList.add("border-success")
+                }
+                break
+        }
+
         i++
         div.appendChild(img)
         arr.push(div)
     }
     return arr
 }
-
-const seasons = ['missionA', 'missionB', 'missionC', 'missionD']
