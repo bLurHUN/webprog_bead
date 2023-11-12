@@ -194,7 +194,7 @@ export class AppState {
                     subPoints += this.missionAlmosVolgy()
                     break
                 case ("Krumpliöntözés"):
-                    subPoints += this.missionAlmosVolgy()
+                    subPoints += this.missionKrumpliontozes()
                     break
             }
         }
