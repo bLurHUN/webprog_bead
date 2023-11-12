@@ -16,7 +16,7 @@ A fegyelmi vétség legsúlyosabb következménye a hallgató elbocsátása az e
 [x] Lehelyezés: A térképelemet le tudjuk helyezni a négyzetrácsra (bárhova). (2 pont)  
 [x] Idő: A játék 28 időegységig tart, és a térképelemek lehelyezésével kivonja a térképelemhez tartozó időegységet belőle. (1 pont)  
 [x] Küldetés: a "Határvidék" küldetés pontszámát ki tudja számolni. (1 pont)  
-[ ] Vége: Minden küldetésnél kiírja, hogy melyik küldetésre hány pontot kaptunk. (1 pont)  
+[x] Vége: Minden küldetésnél kiírja, hogy melyik küldetésre hány pontot kaptunk. (1 pont)  
 [x] Vége: A játék végén, a 28 időegység eltelte után a Határvidék alapküldetéshez tartozó pontszámot kiszámolja, és kiírja hány pontot értünk el. (1 pont)  
 
 ### Az alap feladatok (12 pont)
@@ -27,7 +27,7 @@ A fegyelmi vétség legsúlyosabb következménye a hallgató elbocsátása az e
 [ ] Küldetés: a "Álmos völgy" küldetés megjelenik és pontszámát ki tudja számolni. (1 pont)  
 [ ] Küldetés: a "Krumpliöntözés" küldetés megjelenik és pontszámát ki tudja számolni. (1 pont)  
 [x] Évszak: A játék 4 évszakon keresztül tart, minden évszak 7 időegységig tart, az évszakokhoz tartozó küldetéskártyák kiemelődnek. (1 pont)  
-[ ] Évszak: Minden évszak végén kiszámolódik a hozzájuk tartozó küldetésekből az évszak végi pontszám, és a játék folytatódik a következő évszakra. (1 pont)  
+[x] Évszak: Minden évszak végén kiszámolódik a hozzájuk tartozó küldetésekből az évszak végi pontszám, és a játék folytatódik a következő évszakra. (1 pont)  
 [ ] Küldetés: A hegyek teljes bekerítésével 1 plusz pont szerezhető, amelyek minden évszak (vagy a játék) végén hozzáadódnak a pontszámunkhoz (1 pont)  
 [ ] Játék vége: A játék végén megjelenik a négy évszak alatt szerzett összpontszám (1 pont)  
 [x] Igényes megjelenés (1 pont)

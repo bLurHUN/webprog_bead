@@ -151,35 +151,37 @@ export class AppState {
             switch (this.season) {
                 case (Season.SPRING):
                     this.season = Season.SUMMER
-                    this.calcMissions(this.actMissions.slice(0, -1))
-                    console.log("a")
+                    this.springPoints += this.calcMissions(this.actMissions.slice(0, 2))
                     break
                 case (Season.SUMMER):
                     this.season = Season.AUTUMN
-                    this.calcMissions(this.actMissions.slice(1, -1))
-                    console.log("a")
+                    this.summerPoints += this.calcMissions(this.actMissions.slice(1, 3))
                     break
                 case (Season.AUTUMN):
                     this.season = Season.WINTER
-                    this.calcMissions(this.actMissions.slice(2, -1))
-                    console.log("a")
+                    this.autumnPoints += this.calcMissions(this.actMissions.slice(2, 4))
                     break
             }
             this.time += 7
-
+        } else if (this.status === GameStatus.OVER) {
+            this.season = Season.SPRING
+            this.status = GameStatus.OVER
+            console.log("ya")
+            this.winterPoints += this.calcMissions([this.actMissions[3], this.actMissions[0]])
+            console.log("yay")
         }
     }
 
     calcMissions(arr) {
+        let subPoints = 0
         for (const mission of arr) {
             switch (mission) {
                 case ("Határvidék"):
-                    this.missionHatarvidek()
+                    subPoints += this.missionHatarvidek()
                     break
             }
         }
-
-
+        return subPoints
     }
     missionHatarvidek() {
         let valid
@@ -212,6 +214,7 @@ export class AppState {
         }
 
         this.totalPoints += points
+        return points
     }
 }
 
@@ -362,56 +365,56 @@ const elements = [
     },
 ]
 const missions = {
-        "basic": [
-            {
-                "title": "Az erdő széle",
-                "description": "A térképed szélével szomszédos erdőmezőidért egy-egy pontot kapsz."
-            },
-            {
-                "title": "Álmos-völgy",
-                "description": "Minden olyan sorért, amelyben három erdőmező van, négy-négy pontot kapsz."
-            },
-            {
-                "title": "Krumpliöntözés",
-                "description": "A farmmezőiddel szomszédos vízmezőidért két-két pontot kapsz."
-            },
-            {
-                "title": "Határvidék",
-                "description": "Minden teli sorért vagy oszlopért 6-6 pontot kapsz."
-            }
-        ],
-        "extra": [
-            {
-                "title": "Fasor",
-                "description": "A leghosszabb, függőlegesen megszakítás nélkül egybefüggő erdőmezők mindegyikéért kettő-kettő pontot kapsz. Két azonos hosszúságú esetén csak az egyikért."
-            },
-            {
-                "title": "Gazdag város",
-                "description": "A legalább három különböző tereptípussal szomszédos falurégióidért három-három pontot kapsz."
-            },
-            {
-                "title": "Öntözőcsatorna",
-                "description": "Minden olyan oszlopodért, amelyben a farm illetve a vízmezők száma megegyezik, négy-négy pontot kapsz. Mindkét tereptípusból legalább egy-egy mezőnek lennie kell az oszlopban ahhoz, hogy pontot kaphass érte."
-            },
-            {
-                "title": "Mágusok völgye",
-                "description": "A hegymezőiddel szomszédos vízmezőidért három-három pontot kapsz."
-            },
-            {
-                "title": "Üres telek",
-                "description": "A városmezőiddel szomszédos üres mezőkért 2-2 pontot kapsz."
-            },
-            {
-                "title": "Sorház",
-                "description": "A leghosszabb, vízszintesen megszakítás nélkül egybefüggő falumezők mindegyikéért kettő-kettő pontot kapsz."
-            },
-            {
-                "title": "Páratlan silók",
-                "description": "Minden páratlan sorszámú teli oszlopodért 10-10 pontot kapsz."
-            },
-            {
-                "title": "Gazdag vidék",
-                "description": "Minden legalább öt különböző tereptípust tartalmazó sorért négy-négy pontot kapsz."
-            }
-        ],
-    }
+    "basic": [
+        {
+            "title": "Az erdő széle",
+            "description": "A térképed szélével szomszédos erdőmezőidért egy-egy pontot kapsz."
+        },
+        {
+            "title": "Álmos-völgy",
+            "description": "Minden olyan sorért, amelyben három erdőmező van, négy-négy pontot kapsz."
+        },
+        {
+            "title": "Krumpliöntözés",
+            "description": "A farmmezőiddel szomszédos vízmezőidért két-két pontot kapsz."
+        },
+        {
+            "title": "Határvidék",
+            "description": "Minden teli sorért vagy oszlopért 6-6 pontot kapsz."
+        }
+    ],
+    "extra": [
+        {
+            "title": "Fasor",
+            "description": "A leghosszabb, függőlegesen megszakítás nélkül egybefüggő erdőmezők mindegyikéért kettő-kettő pontot kapsz. Két azonos hosszúságú esetén csak az egyikért."
+        },
+        {
+            "title": "Gazdag város",
+            "description": "A legalább három különböző tereptípussal szomszédos falurégióidért három-három pontot kapsz."
+        },
+        {
+            "title": "Öntözőcsatorna",
+            "description": "Minden olyan oszlopodért, amelyben a farm illetve a vízmezők száma megegyezik, négy-négy pontot kapsz. Mindkét tereptípusból legalább egy-egy mezőnek lennie kell az oszlopban ahhoz, hogy pontot kaphass érte."
+        },
+        {
+            "title": "Mágusok völgye",
+            "description": "A hegymezőiddel szomszédos vízmezőidért három-három pontot kapsz."
+        },
+        {
+            "title": "Üres telek",
+            "description": "A városmezőiddel szomszédos üres mezőkért 2-2 pontot kapsz."
+        },
+        {
+            "title": "Sorház",
+            "description": "A leghosszabb, vízszintesen megszakítás nélkül egybefüggő falumezők mindegyikéért kettő-kettő pontot kapsz."
+        },
+        {
+            "title": "Páratlan silók",
+            "description": "Minden páratlan sorszámú teli oszlopodért 10-10 pontot kapsz."
+        },
+        {
+            "title": "Gazdag vidék",
+            "description": "Minden legalább öt különböző tereptípust tartalmazó sorért négy-négy pontot kapsz."
+        }
+    ],
+}

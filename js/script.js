@@ -8,6 +8,11 @@ const game= document.querySelector("#game")
 const nextElem = document.querySelector("#nextElem")
 const timer = document.querySelector('#timer')
 const missions = document.querySelector('#missions')
+const springScore = document.querySelector('#springScore')
+const summerScore = document.querySelector('#summerScore')
+const autumnScore = document.querySelector('#autumnScore')
+const winterScore = document.querySelector('#winterScore')
+const totalScore = document.querySelector('#totalScore')
 
 state.init()
 game.innerHTML = gameRender(state)
@@ -45,14 +50,25 @@ function handleFieldClick(event) {
         switch (state.season) {
             case (Season.SUMMER):
                 transSeason = "Nyár"
+                springScore.innerHTML = `<p class="text-center" id="springScore">${state.springPoints} pont</p>`
+                summerScore.innerHTML = `<p class="text-center" id="summerScore">${state.summerPoints} pont</p>`
                 break
             case (Season.AUTUMN):
                 transSeason = "Ősz"
+                summerScore.innerHTML = `<p class="text-center" id="summerScore">${state.summerPoints} pont</p>`
+                autumnScore.innerHTML = `<p class="text-center" id="autumnScore">${state.autumnPoints} pont</p>`
                 break
             case (Season.WINTER):
                 transSeason = "Tél"
+                autumnScore.innerHTML = `<p class="text-center" id="autumnScore">${state.autumnPoints} pont</p>`
+                winterScore.innerHTML = `<p class="text-center" id="winterScore">${state.winterPoints} pont</p>`
+                break
+            case (Season.SPRING):
+                winterScore.innerHTML = `<p class="text-center" id="winterScore">${state.winterPoints} pont</p>`
+                springScore.innerHTML = `<p class="text-center" id="springScore">${state.springPoints} pont</p>`
                 break
         }
+        totalScore.innerHTML = `<p class="text-center" id="totalScore">Összesen: ${state.totalPoints} pont</p>`
 
         missions.innerHTML = `
         <div class="col-12 border-bottom border-black border-2">
@@ -62,10 +78,5 @@ function handleFieldClick(event) {
         for (const arrElement of arr) {
             missions.appendChild(arrElement)
         }
-    }
-
-
-    if (state.status === GameStatus.OVER) {
-        state.calcMissions([state.actMissions[3], state.actMissions[0]])
     }
 }
