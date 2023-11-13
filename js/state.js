@@ -213,6 +213,9 @@ export class AppState {
                 case ("Krumpliöntözés"):
                     subPoints += this.missionKrumpliontozes()
                     break
+                case ("Fasor"):
+                    subPoints += this.missionFasor()
+                    break
             }
         }
         this.calcSurroundedHills()
@@ -329,15 +332,6 @@ export class AppState {
         for (let i = 0; i < 11; i++) {
             for (let j = 0; j < 11; j++) {
                 if (this.board[i][j].type === FieldType.FARM) {
-                    /*for (let k = i - 1; k < i + 1; k++) {
-                        for (let l = j - 1; l < j + 1; l++) {
-                            if (k >= 0 && k <= 10 && l >= 0 && k <= 10) {
-                                if (this.board[k][l].type === FieldType.WATER) {
-                                    points += 2
-                                }
-                            }
-                        }
-                    }*/
                     if (i-1 >= 0 && this.board[i-1][j].type === FieldType.WATER) {
                         points += 2
                     }
@@ -355,6 +349,63 @@ export class AppState {
         }
 
         this.totalPoints += points
+        return points
+    }
+
+    missionFasor() {
+        //TODO
+        let colCount = 0
+        let longest = 0
+
+        for (let i = 0; i < 11; i++) {
+            let currentLongest = 0
+            let streak = false
+            for (let j = 0; j < 11; j++) {
+                if (this.board[j][i].type === FieldType.FOREST) {
+                    if (!streak) {
+                        streak = true
+                        currentLongest = 1
+                    } else {
+                        currentLongest++
+                    }
+                } else if (currentLongest > longest) {
+                    longest = currentLongest
+                }
+            }
+            if (currentLongest > longest) {
+                longest = currentLongest
+            }
+        }
+
+        return colCount * longest * 2
+    }
+
+    missionGazdagVaros() {
+        let points = 0
+
+        for (let i = 0; i < i; i++) {
+            for (let j = 0; j < j; j++) {
+                let arr = []
+                if (this.board[i][j].type === FieldType.FARM) {
+                    if (i-1 >= 0 && this.board[i-1][j].type !== FieldType.EMPTY && !arr.includes(this.board[i-1][j].type)) {
+                        arr.push(this.board[i-1][j].type)
+                    }
+                    if (i+1 <= 10 && this.board[i+1][j].type !== FieldType.EMPTY && !arr.includes(this.board[i+1][j].type)) {
+                        arr.push(this.board[i+1][j].type)
+                    }
+                    if (j-1 >= 0 && this.board[i][j-1].type !== FieldType.EMPTY && !arr.includes(this.board[i][j-1].type)) {
+                        arr.push(this.board[i][j-1].type)
+                    }
+                    if (j+1 <= 10 && this.board[i][j+1].type !== FieldType.EMPTY && !arr.includes(this.board[i][j+1].type)) {
+                        arr.push(this.board[i][j+1].type)
+                    }
+                }
+                if (arr.length >= 3) {
+                    points += 3
+                }
+            }
+        }
+
         return points
     }
 }
