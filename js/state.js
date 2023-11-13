@@ -216,6 +216,12 @@ export class AppState {
                 case ("Fasor"):
                     subPoints += this.missionFasor()
                     break
+                case ("Gazdag Város"):
+                    subPoints += this.missionGazdagVaros()
+                    break
+                case ("Öntözőcsatorna"):
+                    subPoints += this.missionOntozocsatorna()
+                    break
             }
         }
         this.calcSurroundedHills()
@@ -386,7 +392,7 @@ export class AppState {
         for (let i = 0; i < i; i++) {
             for (let j = 0; j < j; j++) {
                 let arr = []
-                if (this.board[i][j].type === FieldType.FARM) {
+                if (this.board[i][j].type === FieldType.VILLAGE) {
                     if (i-1 >= 0 && this.board[i-1][j].type !== FieldType.EMPTY && !arr.includes(this.board[i-1][j].type)) {
                         arr.push(this.board[i-1][j].type)
                     }
@@ -408,6 +414,28 @@ export class AppState {
 
         return points
     }
+
+    missionOntozocsatorna() {
+        let points = 0
+
+        for (let i = 0; i < 11; i++) {
+            let farmCount = 0
+            let waterCount = 0
+            for (let j = 0; j < 11; j++) {
+                if (this.board[j][i].type === FieldType.FARM) {
+                    farmCount++
+                } else if (this.board[j][i].type === FieldType.WATER) {
+                    waterCount++
+                }
+            }
+            if (waterCount !== 0 && farmCount !== 0 && farmCount === waterCount) {
+                points += 4
+            }
+        }
+
+        return points
+    }
+
 }
 
 const elements = [
