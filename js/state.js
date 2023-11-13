@@ -389,8 +389,7 @@ export class AppState {
     }
 
     missionFasor() {
-        //TODO
-        let colCount = 0
+        let colCount = 1
         let longest = 0
 
         for (let i = 0; i < 11; i++) {
@@ -404,12 +403,22 @@ export class AppState {
                     } else {
                         currentLongest++
                     }
-                } else if (currentLongest > longest) {
+                } else if (streak && currentLongest > longest) {
+                    streak = false
                     longest = currentLongest
+                    currentLongest = 0
+                    colCount = 1
+                } else if (streak && currentLongest === longest) {
+                    streak = false
+                    currentLongest = 0
+                    colCount++
                 }
             }
             if (currentLongest > longest) {
                 longest = currentLongest
+                colCount = 1
+            } else if (currentLongest === longest) {
+                colCount++
             }
         }
 
