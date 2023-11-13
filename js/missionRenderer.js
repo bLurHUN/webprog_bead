@@ -27,6 +27,38 @@ export function render(state) {
                 img.alt = "Álmos-völgy"
                 img.src = "assets/missions_hun/almos-volgy.png"
                 break
+            case ("Fasor"):
+                img.alt = "Fasor"
+                img.src = "assets/missions_hun/fasor.png"
+                break
+            case ("Gazdag város"):
+                img.alt = "Gazdag város"
+                img.src = "assets/missions_hun/gazdag-varos.png"
+                break
+            case ("Öntözőcsatorna"):
+                img.alt = "Öntözőcsatorna"
+                img.src = "assets/missions_hun/ontozocsatorna.png"
+                break
+            case ("Mágusok völgye"):
+                img.alt = "Mágusok völgye"
+                img.src = "assets/missions_hun/magusok-volgye.png"
+                break
+            case ("Üres telek"):
+                img.alt = "Üres telek"
+                img.src = "assets/missions_hun/ures-telek.png"
+                break
+            case ("Sorház"):
+                img.alt = "Sorház"
+                img.src = "assets/missions_hun/sorhaz.png"
+                break
+            case ("Páratlan silók"):
+                img.alt = "Páratlan silók"
+                img.src = "assets/missions_hun/paratlan-silok.png"
+                break
+            case ("Gazdag vidék"):
+                img.alt = "Gazdag vidék"
+                img.src = "assets/missions_hun/gazdag-videk.png"
+                break
         }
 
         switch (state.season) {
