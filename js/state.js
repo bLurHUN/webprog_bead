@@ -18,6 +18,20 @@ export class AppState {
     summerPoints = 0
     autumnPoints = 0
     winterPoints = 0
+
+    hatarvidekPoints = 0
+    erdoSzelePoints = 0
+    almosVolgykPoints = 0
+    krumpliontozesPoints = 0
+    fasorPoints = 0
+    ontozocsatornaPoints = 0
+    gazdagVarosPoints = 0
+    magusokVolgyePoints = 0
+    uresTelekPoints = 0
+    sorhazPoints = 0
+    paratlanSilokPoints = 0
+    gazdagVidekPoints = 0
+
     season = Season
     board = []
     nextElem = []
@@ -173,19 +187,23 @@ export class AppState {
                 case (Season.SPRING):
                     this.season = Season.SUMMER
                     this.springPoints += this.calcMissions(this.actMissions.slice(0, 2))
+                    console.log(this.springPoints)
                     break
                 case (Season.SUMMER):
                     this.season = Season.AUTUMN
                     this.summerPoints += this.calcMissions(this.actMissions.slice(1, 3))
+                    console.log(this.summerPoints)
                     break
                 case (Season.AUTUMN):
                     this.season = Season.WINTER
                     this.autumnPoints += this.calcMissions(this.actMissions.slice(2, 4))
+                    console.log(this.autumnPoints)
                     break
                 case (Season.WINTER):
                     this.season = Season.SPRING
                     this.status = GameStatus.OVER
                     this.winterPoints += this.calcMissions([this.actMissions[3], this.actMissions[0]])
+                    console.log(this.winterPoints)
                     break
             }
             this.time += 7
@@ -194,6 +212,7 @@ export class AppState {
 
     calcMissions(arr) {
         let subPoints = 0
+        console.log(arr)
         for (const mission of arr) {
             switch (mission) {
                 case ("Határvidék"):
@@ -302,6 +321,7 @@ export class AppState {
             }
         }
 
+        this.hatarvidekPoints += points
         this.totalPoints += points
         return points
     }
@@ -316,6 +336,7 @@ export class AppState {
             }
         }
 
+        this.erdoSzelePoints += points
         this.totalPoints += points
         return points
     }
@@ -335,6 +356,7 @@ export class AppState {
             }
         }
 
+        this.almosVolgykPoints += points
         this.totalPoints += points
         return points
     }
@@ -361,6 +383,7 @@ export class AppState {
             }
         }
 
+        this.krumpliontozesPoints += points
         this.totalPoints += points
         return points
     }
@@ -389,6 +412,7 @@ export class AppState {
                 longest = currentLongest
             }
         }
+
 
         return colCount * longest * 2
     }
@@ -419,6 +443,8 @@ export class AppState {
             }
         }
 
+        this.gazdagVarosPoints += points
+        this.totalPoints += points
         return points
     }
 
@@ -440,6 +466,8 @@ export class AppState {
             }
         }
 
+        this.ontozocsatornaPoints += points
+        this.totalPoints += points
         return points
     }
 
@@ -465,6 +493,8 @@ export class AppState {
             }
         }
 
+        this.magusokVolgyePoints += points
+        this.totalPoints += points
         return points
     }
 
@@ -490,6 +520,8 @@ export class AppState {
             }
         }
 
+        this.uresTelekPoints += points
+        this.totalPoints += points
         return points
     }
 
@@ -509,6 +541,8 @@ export class AppState {
             }
         }
 
+        this.paratlanSilokPoints += points
+        this.totalPoints += points
         return points
     }
 
@@ -527,6 +561,8 @@ export class AppState {
             }
         }
 
+        this.gazdagVidekPoints += points
+        this.totalPoints += points
         return points
     }
 }

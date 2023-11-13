@@ -1,5 +1,16 @@
+body {
+    font-family: "Comic Sans MS", sans-serif;
+}
+
 p {
     font-size: 18pt;
+}
+
+p.mission-text {
+    z-index: 100;
+    margin-top: -30px;
+    color: white;
+    font-size: 0.9em;
 }
 
 #game {
