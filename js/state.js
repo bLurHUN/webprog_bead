@@ -242,6 +242,9 @@ export class AppState {
                 case ("Üres telek"):
                     subPoints += this.missionUresTelek()
                     break
+                case ("Sorház"):
+                    subPoints += this.missionUresTelek()
+                    break
                 case ("Páratlan silók"):
                     subPoints += this.missionParatlanSilok()
                     break
@@ -389,7 +392,6 @@ export class AppState {
     }
 
     missionFasor() {
-        let colCount = 1
         let longest = 0
 
         for (let i = 0; i < 11; i++) {
@@ -407,23 +409,18 @@ export class AppState {
                     streak = false
                     longest = currentLongest
                     currentLongest = 0
-                    colCount = 1
                 } else if (streak && currentLongest === longest) {
                     streak = false
                     currentLongest = 0
-                    colCount++
                 }
             }
             if (currentLongest > longest) {
                 longest = currentLongest
-                colCount = 1
             } else if (currentLongest === longest) {
-                colCount++
             }
         }
 
-
-        return colCount * longest * 2
+        return longest * 2
     }
 
     missionGazdagVaros() {
@@ -532,6 +529,43 @@ export class AppState {
         this.uresTelekPoints += points
         this.totalPoints += points
         return points
+    }
+
+    missionSorhaz() {
+        let rowCount = 1
+        let longest = 0
+
+        for (let i = 0; i < 11; i++) {
+            let currentLongest = 0
+            let streak = false
+            for (let j = 0; j < 11; j++) {
+                if (this.board[i][j].type === FieldType.VILLAGE) {
+                    if (!streak) {
+                        streak = true
+                        currentLongest = 1
+                    } else {
+                        currentLongest++
+                    }
+                } else if (streak && currentLongest > longest) {
+                    streak = false
+                    longest = currentLongest
+                    currentLongest = 0
+                    rowCount = 1
+                } else if (streak && currentLongest === longest) {
+                    streak = false
+                    currentLongest = 0
+                    rowCount++
+                }
+            }
+            if (currentLongest > longest) {
+                longest = currentLongest
+                rowCount = 1
+            } else if (currentLongest === longest) {
+                rowCount++
+            }
+        }
+
+        return rowCount * longest * 2
     }
 
     missionParatlanSilok() {
