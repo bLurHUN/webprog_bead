@@ -521,8 +521,14 @@ export class AppState {
         let points = 0
 
         for (let i = 0; i < 11; i++) {
+            let arr = []
             for (let j = 0; j < 11; j++) {
-
+                if (!arr.includes(this.board[i][j].type) && this.board[i][j].type !== FieldType.EMPTY) {
+                    arr.push(this.board[i][j].type)
+                }
+            }
+            if (arr.length >= 5) {
+                points += 4
             }
         }
 
