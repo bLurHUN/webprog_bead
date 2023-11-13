@@ -222,6 +222,9 @@ export class AppState {
                 case ("Öntözőcsatorna"):
                     subPoints += this.missionOntozocsatorna()
                     break
+                case ("Mágusok völgye"):
+                    subPoints += this.missionMagusokVolgye()
+                    break
             }
         }
         this.calcSurroundedHills()
@@ -430,6 +433,31 @@ export class AppState {
             }
             if (waterCount !== 0 && farmCount !== 0 && farmCount === waterCount) {
                 points += 4
+            }
+        }
+
+        return points
+    }
+
+    missionMagusokVolgye() {
+        let points = 0
+
+        for (let i = 0; i < 11; i++) {
+            for (let j = 0; j < 11; j++) {
+                if (this.board[i][j].type === FieldType.HILL) {
+                    if (this.board[i-1][j].type === FieldType.WATER) {
+                        points += 3
+                    }
+                    if (this.board[i+1][j].type === FieldType.WATER) {
+                        points += 3
+                    }
+                    if (this.board[i][j-1].type === FieldType.WATER) {
+                        points += 3
+                    }
+                    if (this.board[i][j+1].type === FieldType.WATER) {
+                        points += 3
+                    }
+                }
             }
         }
 
