@@ -228,6 +228,12 @@ export class AppState {
                 case ("Üres telek"):
                     subPoints += this.missionUresTelek()
                     break
+                case ("Páratlan silók"):
+                    subPoints += this.missionParatlanSilok()
+                    break
+                case ("Gazdag vidék"):
+                    subPoints += this.missionGazdagVidek()
+                    break
             }
         }
         this.calcSurroundedHills()
@@ -492,6 +498,36 @@ export class AppState {
         return points
     }
 
+    missionParatlanSilok() {
+        let points = 0
+
+        for (let i = 0; i < 11; i+=2) {
+            let full = true
+            for (let j = 0; j < 11; j++) {
+                if (this.board[j][i].type === FieldType.EMPTY) {
+                    full = false
+                    break
+                }
+            }
+            if (full) {
+                points += 10
+            }
+        }
+
+        return points
+    }
+
+    missionGazdagVidek() {
+        let points = 0
+
+        for (let i = 0; i < 11; i++) {
+            for (let j = 0; j < 11; j++) {
+
+            }
+        }
+
+        return points
+    }
 }
 
 const elements = [

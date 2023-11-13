@@ -35,6 +35,7 @@ export function render(state) {
                     img.classList.add("border")
                     img.classList.add("border-5")
                     img.classList.add("border-success")
+                    img.classList.add("rounded-5")
                 }
                 break
             case (Season.SUMMER):
@@ -42,6 +43,7 @@ export function render(state) {
                     img.classList.add("border")
                     img.classList.add("border-5")
                     img.classList.add("border-success")
+                    img.classList.add("rounded-5")
                 }
                 break
             case (Season.AUTUMN):
@@ -49,6 +51,7 @@ export function render(state) {
                     img.classList.add("border")
                     img.classList.add("border-5")
                     img.classList.add("border-success")
+                    img.classList.add("rounded-5")
                 }
                 break
             case (Season.WINTER):
@@ -56,6 +59,7 @@ export function render(state) {
                     img.classList.add("border")
                     img.classList.add("border-5")
                     img.classList.add("border-success")
+                    img.classList.add("rounded-5")
                 }
                 break
         }
