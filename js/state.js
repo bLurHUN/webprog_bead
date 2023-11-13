@@ -225,6 +225,9 @@ export class AppState {
                 case ("Mágusok völgye"):
                     subPoints += this.missionMagusokVolgye()
                     break
+                case ("Üres telek"):
+                    subPoints += this.missionUresTelek()
+                    break
             }
         }
         this.calcSurroundedHills()
@@ -456,6 +459,31 @@ export class AppState {
                     }
                     if (this.board[i][j+1].type === FieldType.WATER) {
                         points += 3
+                    }
+                }
+            }
+        }
+
+        return points
+    }
+
+    missionUresTelek() {
+        let points = 0
+
+        for (let i = 0; i < 11; i++) {
+            for (let j = 0; j < 11; j++) {
+                if (this.board[i][j].type === FieldType.VILLAGE) {
+                    if (i-1 >= 0 && this.board[i-1][j].type === FieldType.EMPTY) {
+                        points += 2
+                    }
+                    if (i+1 <= 10 && this.board[i+1][j].type === FieldType.EMPTY) {
+                        points += 2
+                    }
+                    if (j-1 >= 0 && this.board[i][j-1].type === FieldType.EMPTY) {
+                        points += 2
+                    }
+                    if (j+1 <= 10 && this.board[i][j+1].type === FieldType.EMPTY) {
+                        points += 2
                     }
                 }
             }
