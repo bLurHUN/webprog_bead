@@ -25,7 +25,7 @@ export class AppState {
     time
     status = GameStatus
     actMissions = []
-    r
+    alreadySelectedNextElements = []
 
     init() {
         this.season = Season.SPRING
@@ -96,29 +96,23 @@ export class AppState {
                 }
             }
             this.time -= this.nextElem.time
-            elements.splice(this.r, 1)
             this.selectNextElement()
-            this.setActiveSeason()
         }
     }
 
     selectNextElement() {
-        if (elements.length === 0) {
-            for (let i = 0; i < 3; i++) {
-                for (let j = 0; j < 3; j++) {
-                    this.preview[i] = []
-                    for (let j = 0; j < 3; j++) {
-                        this.preview[i][j] = new Field()
-                        this.preview[i][j].type = FieldType.EMPTY
-                    }
-                }
-            }
-            this.status = GameStatus.OVER
-            return
+        const currSeason = this.season
+        this.setActiveSeason()
+        if (currSeason !== this.season) {
+            this.alreadySelectedNextElements = []
         }
 
-        this.r = Math.floor(Math.random() * elements.length)
-        this.nextElem = elements[this.r]
+        let r = Math.floor(Math.random() * elements.length)
+        while (this.alreadySelectedNextElements.includes(r)) {
+            r = Math.floor(Math.random() * elements.length)
+        }
+        this.nextElem = elements[r]
+        this.alreadySelectedNextElements.push(r)
 
         for (let i = 0; i < 3; i++) {
             this.preview[i] = []
@@ -188,12 +182,13 @@ export class AppState {
                     this.season = Season.WINTER
                     this.autumnPoints += this.calcMissions(this.actMissions.slice(2, 4))
                     break
+                case (Season.WINTER):
+                    this.season = Season.SPRING
+                    this.status = GameStatus.OVER
+                    this.winterPoints += this.calcMissions([this.actMissions[3], this.actMissions[0]])
+                    break
             }
             this.time += 7
-        } else if (this.status === GameStatus.OVER) {
-            this.season = Season.SPRING
-            this.status = GameStatus.OVER
-            this.winterPoints += this.calcMissions([this.actMissions[3], this.actMissions[0]])
         }
     }
 

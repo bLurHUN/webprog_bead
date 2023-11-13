@@ -20,7 +20,7 @@ state.init()
 game.innerHTML = gameRender(state)
 nextElem.innerHTML = state.nextElem.time
 nextElem.innerHTML += prevRender(state)
-timer.innerHTML = state.time
+timer.innerHTML = `<p class="mb-0">Évszakból hátralevő idő: ${state.time}</p>`
 const arr = missionRender(state)
 for (const arrElement of arr) {
     missions.appendChild(arrElement)
@@ -45,7 +45,7 @@ function handleFieldClick(event) {
     const td = event.target.parentNode
     state.place(td)
     game.innerHTML = gameRender(state)
-    timer.innerHTML = state.time
+    timer.innerHTML = `<p class="mb-0">Évszakból hátralevő idő: ${state.time}</p>`
     nextElem.innerHTML = state.nextElem.time
     nextElem.innerHTML += prevRender(state)
 
