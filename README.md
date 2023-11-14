@@ -41,4 +41,4 @@ A fegyelmi vétség legsúlyosabb következménye a hallgató elbocsátása az e
 [x] Küldetés: Sorház (1 pont)  
 [x] Küldetés: Páratlan silók (1 pont)  
 [x] Küldetés: Gazdag vidék (1 pont)  
-[ ] Mentés: A játék folyamatosan menti állapotát a localStorage-ba. Oldal betöltésekor, ha van itt ilyen mentett állapot, akkor onnan tölti be, egyébként új játék indul. Játék végén törlődik a mentett állapot. (2 pont)  
+[x] Mentés: A játék folyamatosan menti állapotát a localStorage-ba. Oldal betöltésekor, ha van itt ilyen mentett állapot, akkor onnan tölti be, egyébként új játék indul. Játék végén törlődik a mentett állapot. (2 pont)  

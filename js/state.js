@@ -42,6 +42,38 @@ export class AppState {
     alreadySelectedNextElements = []
 
     init() {
+        const saveData = JSON.parse(localStorage.getItem("save"))
+        if (saveData !== null && saveData.status === GameStatus.ACTIVE) {
+            this.totalPoints = saveData.totalPoints
+            this.springPoints = saveData.springPoints
+            this.summerPoints = saveData.summerPoints
+            this.autumnPoints = saveData.autumnPoints
+            this.winterPoints = saveData.winterPoints
+
+            this.hatarvidekPoints = saveData.hatarvidekPoints
+            this.erdoSzelePoints = saveData.erdoSzelePoints
+            this.almosVolgykPoints = saveData.almosVolgykPoints
+            this.krumpliontozesPoints = saveData.krumpliontozesPoints
+            this.fasorPoints = saveData.fasorPoints
+            this.ontozocsatornaPoints = saveData.ontozocsatornaPoints
+            this.gazdagVarosPoints = saveData.gazdagVarosPoints
+            this.magusokVolgyePoints = saveData.magusokVolgyePoints
+            this.uresTelekPoints = saveData.uresTelekPoints
+            this.sorhazPoints = saveData.sorhazPoints
+            this.paratlanSilokPoints = saveData.paratlanSilokPoints
+            this.gazdagVidekPoints = saveData.gazdagVidekPoints
+
+            this.season = saveData.season
+            this.board = saveData.board
+            this.nextElem = saveData.nextElem
+            this.preview = saveData.preview
+            this.time = saveData.time
+            this.status = saveData.status
+            this.actMissions = saveData.actMissions
+            this.alreadySelectedNextElements = saveData.alreadySelectedNextElements
+            return
+        }
+
         this.season = Season.SPRING
         this.time = 7
         this.status = GameStatus.ACTIVE
@@ -73,6 +105,8 @@ export class AppState {
                 this.actMissions.push(missions.basic[mr].title)
             }
         }
+
+        localStorage.setItem("save", JSON.stringify(this))
     }
 
     place(td) {
@@ -111,6 +145,7 @@ export class AppState {
             }
             this.time -= this.nextElem.time
             this.selectNextElement()
+            localStorage.setItem("save", JSON.stringify(this))
         }
     }
 
@@ -243,7 +278,7 @@ export class AppState {
                     subPoints += this.missionUresTelek()
                     break
                 case ("Sorház"):
-                    subPoints += this.missionUresTelek()
+                    subPoints += this.missionSorhaz()
                     break
                 case ("Páratlan silók"):
                     subPoints += this.missionParatlanSilok()
