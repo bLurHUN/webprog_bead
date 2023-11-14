@@ -18,7 +18,7 @@ const mirror = document.querySelector('#mirror')
 
 state.init()
 game.innerHTML = gameRender(state)
-nextElem.innerHTML = state.nextElem.time
+nextElem.innerHTML = `<p>${state.nextElem.time} ⏱</p>`
 nextElem.innerHTML += prevRender(state)
 timer.innerHTML = `<p class="mb-0">Évszakból hátralevő idő: ${state.time}/7</p>`
 const arr = missionRender(state)
@@ -46,7 +46,7 @@ function handleFieldClick(event) {
     state.place(td)
     game.innerHTML = gameRender(state)
     timer.innerHTML = `<p class="mb-0">Évszakból hátralevő idő: ${state.time}/7</p>`
-    nextElem.innerHTML = state.nextElem.time
+    nextElem.innerHTML = `<p>${state.nextElem.time} ⏱</p>`
     nextElem.innerHTML += prevRender(state)
 
     if (season !== state.season) {

@@ -43,7 +43,7 @@ export class AppState {
 
     init() {
         const saveData = JSON.parse(localStorage.getItem("save"))
-        if (saveData !== null && saveData.status === GameStatus.ACTIVE) {
+        if (saveData !== null) {
             this.totalPoints = saveData.totalPoints
             this.springPoints = saveData.springPoints
             this.summerPoints = saveData.summerPoints
@@ -189,6 +189,32 @@ export class AppState {
         }
     }
 
+    setActiveSeason() {
+        if (this.time <= 0) {
+            switch (this.season) {
+                case (Season.SPRING):
+                    this.season = Season.SUMMER
+                    this.springPoints += this.calcMissions(this.actMissions.slice(0, 2))
+                    break
+                case (Season.SUMMER):
+                    this.season = Season.AUTUMN
+                    this.summerPoints += this.calcMissions(this.actMissions.slice(1, 3))
+                    break
+                case (Season.AUTUMN):
+                    this.season = Season.WINTER
+                    this.autumnPoints += this.calcMissions(this.actMissions.slice(2, 4))
+                    break
+                case (Season.WINTER):
+                    this.season = Season.SPRING
+                    this.status = GameStatus.OVER
+                    localStorage.removeItem("game")
+                    this.winterPoints += this.calcMissions([this.actMissions[3], this.actMissions[0]])
+                    break
+            }
+            this.time += 7
+        }
+    }
+
     rotateNextElement() {
         const rows = this.preview.length;
         const columns = this.preview[0].length;
@@ -213,35 +239,6 @@ export class AppState {
     mirrorNextElement() {
         for (const row of this.preview) {
             row.reverse()
-        }
-    }
-
-    setActiveSeason() {
-        if (this.time <= 0) {
-            switch (this.season) {
-                case (Season.SPRING):
-                    this.season = Season.SUMMER
-                    this.springPoints += this.calcMissions(this.actMissions.slice(0, 2))
-                    console.log(this.springPoints)
-                    break
-                case (Season.SUMMER):
-                    this.season = Season.AUTUMN
-                    this.summerPoints += this.calcMissions(this.actMissions.slice(1, 3))
-                    console.log(this.summerPoints)
-                    break
-                case (Season.AUTUMN):
-                    this.season = Season.WINTER
-                    this.autumnPoints += this.calcMissions(this.actMissions.slice(2, 4))
-                    console.log(this.autumnPoints)
-                    break
-                case (Season.WINTER):
-                    this.season = Season.SPRING
-                    this.status = GameStatus.OVER
-                    this.winterPoints += this.calcMissions([this.actMissions[3], this.actMissions[0]])
-                    console.log(this.winterPoints)
-                    break
-            }
-            this.time += 7
         }
     }
 
