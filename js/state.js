@@ -99,10 +99,10 @@ export class AppState {
         let selected = []
         let mr
         while (this.actMissions.length < 4) {
-            mr = Math.floor(Math.random() * missions.basic.length)
+            mr = Math.floor(Math.random() * missions.length)
             if (!selected.includes(mr)) {
                 selected.push(mr)
-                this.actMissions.push(missions.basic[mr].title)
+                this.actMissions.push(missions[mr].title)
             }
         }
 
@@ -788,8 +788,7 @@ const elements = [
         mirrored: false
     },
 ]
-const missions = {
-    "basic": [
+const missions = [
         {
             "title": "Az erdő széle",
             "description": "A térképed szélével szomszédos erdőmezőidért egy-egy pontot kapsz."
@@ -805,9 +804,7 @@ const missions = {
         {
             "title": "Határvidék",
             "description": "Minden teli sorért vagy oszlopért 6-6 pontot kapsz."
-        }
-    ],
-    "extra": [
+        },
         {
             "title": "Fasor",
             "description": "A leghosszabb, függőlegesen megszakítás nélkül egybefüggő erdőmezők mindegyikéért kettő-kettő pontot kapsz. Két azonos hosszúságú esetén csak az egyikért."
@@ -840,5 +837,4 @@ const missions = {
             "title": "Gazdag vidék",
             "description": "Minden legalább öt különböző tereptípust tartalmazó sorért négy-négy pontot kapsz."
         }
-    ],
-}
+]

@@ -88,12 +88,12 @@ function handleFieldClick(event) {
 
 function rotateElement() {
     state.rotateNextElement()
-    nextElem.innerHTML = state.nextElem.time
+    nextElem.innerHTML = `<p>${state.nextElem.time} ⏱</p>`
     nextElem.innerHTML += prevRender(state)
 }
 
 function mirrorElement() {
     state.mirrorNextElement()
-    nextElem.innerHTML = state.nextElem.time
+    nextElem.innerHTML = `<p>${state.nextElem.time} ⏱</p>`
     nextElem.innerHTML += prevRender(state)
 }

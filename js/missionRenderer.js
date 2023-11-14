@@ -32,7 +32,7 @@ export function render(state) {
                 break
             case ("Álmos-völgy"):
                 img.alt = "Álmos-völgy"
-                img.src = "assets/missions_hun/almos-volgy.png"
+                img.src = "assets/missions_hun/almos_volgy.png"
                 p.innerHTML = `${state.almosVolgykPoints} pont`
                 break
             case ("Fasor"):
@@ -42,7 +42,7 @@ export function render(state) {
                 break
             case ("Gazdag város"):
                 img.alt = "Gazdag város"
-                img.src = "assets/missions_hun/gazdag-varos.png"
+                img.src = "assets/missions_hun/gazdag_varos.png"
                 p.innerHTML = `${state.gazdagVarosPoints} pont`
                 break
             case ("Öntözőcsatorna"):
@@ -52,12 +52,12 @@ export function render(state) {
                 break
             case ("Mágusok völgye"):
                 img.alt = "Mágusok völgye"
-                img.src = "assets/missions_hun/magusok-volgye.png"
+                img.src = "assets/missions_hun/magusok_volgye.png"
                 p.innerHTML = `${state.magusokVolgyePoints} pont`
                 break
             case ("Üres telek"):
                 img.alt = "Üres telek"
-                img.src = "assets/missions_hun/ures-telek.png"
+                img.src = "assets/missions_hun/ures_telek.png"
                 p.innerHTML = `${state.uresTelekPoints} pont`
                 break
             case ("Sorház"):
@@ -67,12 +67,12 @@ export function render(state) {
                 break
             case ("Páratlan silók"):
                 img.alt = "Páratlan silók"
-                img.src = "assets/missions_hun/paratlan-silok.png"
+                img.src = "assets/missions_hun/paratlan_silok.png"
                 p.innerHTML = `${state.paratlanSilokPoints} pont`
                 break
             case ("Gazdag vidék"):
                 img.alt = "Gazdag vidék"
-                img.src = "assets/missions_hun/gazdag-videk.png"
+                img.src = "assets/missions_hun/gazdag_videk.png"
                 p.innerHTML = `${state.gazdagVidekPoints} pont`
                 break
         }
